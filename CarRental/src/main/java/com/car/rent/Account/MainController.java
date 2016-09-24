@@ -1,4 +1,4 @@
-package com.car.rent.controller;
+package com.car.rent.Account;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
