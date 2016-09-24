@@ -7,6 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class CarRentalApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(CarRentalApplication.class, args);
-		
+		//testing git paulos
 	}
 }
