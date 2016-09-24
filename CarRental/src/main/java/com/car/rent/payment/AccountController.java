@@ -17,11 +17,12 @@ public class AccountController {
 //		return "index";
 //	}
 
-//	@RequestMapping(value = "/addAccount", method = RequestMethod.POST)
-//	public void addAccount() {
-//		Payment payment = new Payment();
-//		payment.setPaymentType(payment.getPaymentType().CREDITCARD);
-//		paymentDao.save(payment);
-//	}
+	@RequestMapping(value = "/addAccount", method = RequestMethod.POST)
+	public void addAccount() {
+		Payment payment = new Payment();
+		
+		payment.setPaymentType(payment.getPaymentType().CREDITCARD);
+		paymentDao.save(payment);
+	}
 
 }
