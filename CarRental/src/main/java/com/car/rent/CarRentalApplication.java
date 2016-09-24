@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class CarRentalApplication {
 	public static void main(String[] args) {
-		// hello world
+		// how ar eyou?
 		SpringApplication.run(CarRentalApplication.class, args);
 	}
 }
