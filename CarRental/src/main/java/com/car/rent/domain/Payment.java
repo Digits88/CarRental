@@ -3,13 +3,16 @@ package com.car.rent.domain;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Payment {
 	@Id
 	@GeneratedValue
 	private int paymentId;
+	@OneToOne
 	private Person person;
+	@OneToOne
 	private Vehicle vehicle;
 	private PaymentType paymentType;
 
