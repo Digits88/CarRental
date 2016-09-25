@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link href="../static/css/main.css" th:href="@{css/main.css}"
+	rel="stylesheet" media="screen" />
+<meta charset="utf-8" />
+</head>
+<body>
+<table>
+    <tr data-th-each="vehicle : ${vehicles}">
+        <td data-th-text="${vehicle.brand}"></td>
+        <td data-th-text="${vehicle.type}"></td>
+        <td data-th-text="${vehicle.model}"></td>
+        <td data-th-text="${vehicle.vehiclePlateNumber}"></td>
+        <td data-th-text="${vehicle.numberOfSeats}"></td>
+        <td data-th-text="${vehicle.dailyPrice}"></td>
+        
+    </tr>
+</table>
+</body>
+</html>

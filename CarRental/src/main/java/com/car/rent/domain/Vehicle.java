@@ -3,18 +3,32 @@ package com.car.rent.domain;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Entity
 public class Vehicle {
 	@Id
 	@GeneratedValue
-	private Integer vehicleId;
+	private Integer vehicleId;	
+	@NotEmpty
 	private String brand;
+	@NotEmpty	
 	private String type;
+	@NotEmpty	
+	private String vehiclePlateNumber;	
+	@NotNull
 	private int model;
-	private String vehiclePlateNumber;
+	@NotNull
+	@Min(1)
 	private int numberOfSeats;
+	@NotNull	
+	@Min(0)	
 	private double dailyPrice;
+	@NotNull	
 	private Boolean isAvailable;
 
 	public Integer getVehicleId() {
