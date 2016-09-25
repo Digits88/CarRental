@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.car.rent.domain.Vehicle;
 import com.car.rent.vehicle.domain.VehicleSpec;
 import com.car.rent.vehicle.service.VehicleService;
-
+//vhicle controller
 @RequestMapping("/vehicle/")
 @Controller
 public class VehicleController {
