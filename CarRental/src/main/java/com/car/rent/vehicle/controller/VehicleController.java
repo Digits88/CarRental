@@ -115,8 +115,14 @@ public class VehicleController {
 	}
 
 	@RequestMapping(value = "update", method = RequestMethod.POST)
-	public String update(@Valid Vehicle vehicle, @ModelAttribute("available") String available, BindingResult result,
+	public String update
+//    (@ModelAttribute("vehicle") @Valid Vehicle vehicle,
+//		@ModelAttribute("available") String available,
+	       (@Valid Vehicle vehicle,
+			String available,
+			BindingResult result,
 			Model model) {
+		System.out.println("***********************************************************8");
 		System.out.println(result);
 		System.out.println(vehicle);
 		System.out.println(available);

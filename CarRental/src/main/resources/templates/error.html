@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link th:href="@{/css/bootstrap.css}" rel="stylesheet" media="screen" />
+<link th:href="@{/css/main.css}" rel="stylesheet" media="screen" />
+<script th:src="@{/js/jquery.js}"></script>
+<script th:src="@{/js/vehicle.js}"></script>
+    <title>Error page</title>
+<meta charset="utf-8" />
+</head>
+  <body>
+  <p>hey! error </p>
+    <h1 th:text="${errorCode}">500</h1>
+    <p th:text="${errorMessage}">java.lang.NullPointerException</p>
+  </body>
+</html>
