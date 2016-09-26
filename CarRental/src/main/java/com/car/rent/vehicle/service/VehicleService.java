@@ -47,11 +47,22 @@ public class VehicleService {
 		return vehicleDAO.findAll();
 	}
 
+	public Vehicle find(int vehicleId) {
+		return vehicleDAO.findByVehicleId(vehicleId);
+	}
+
 	public void deleteVehicle(Integer vehicleId) {
 		this.vehicleDAO.deleteByVehicleId(vehicleId);
 	}
 
 	@Autowired
 	private VehicleDAO vehicleDAO;
+
+	public void update(Vehicle vehicle) {
+		// TODO Auto-generated method stub
+		this.vehicleDAO.setVehicleByVehicleId(vehicle.getBrand(), vehicle.getType(), vehicle.getVehiclePlateNumber(),
+				vehicle.getModel(), vehicle.getNumberOfSeats(), vehicle.getDailyPrice(), vehicle.getIsAvailable(),
+				vehicle.getVehicleId());
+	}
 
 }

@@ -122,4 +122,11 @@ public class VehicleSpec {
 		this.isAvailable = isAvailable;
 	}
 
+	@Override
+	public String toString() {
+		return "VehicleSpec [brand=" + brand + ", type=" + type + ", vehiclePlateNumber=" + vehiclePlateNumber
+				+ ", numberOfSeats=" + numberOfSeats + ", isAvailable=" + isAvailable + ", model=" + model
+				+ ", dailyPrice=" + dailyPrice + "]";
+	}
+
 }

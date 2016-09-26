@@ -7,7 +7,6 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 @Entity
 public class Vehicle {
@@ -28,7 +27,6 @@ public class Vehicle {
 	@NotNull	
 	@Min(0)	
 	private double dailyPrice;
-	@NotNull	
 	private Boolean isAvailable;
 
 	public Integer getVehicleId() {
@@ -93,6 +91,13 @@ public class Vehicle {
 
 	public void setIsAvailable(Boolean isAvailable) {
 		this.isAvailable = isAvailable;
+	}
+
+	@Override
+	public String toString() {
+		return "Vehicle [vehicleId=" + vehicleId + ", brand=" + brand + ", type=" + type + ", vehiclePlateNumber="
+				+ vehiclePlateNumber + ", model=" + model + ", numberOfSeats=" + numberOfSeats + ", dailyPrice="
+				+ dailyPrice + ", isAvailable=" + isAvailable + "]";
 	}
 
 }
