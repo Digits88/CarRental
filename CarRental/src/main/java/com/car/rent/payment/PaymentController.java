@@ -33,8 +33,9 @@ public class PaymentController {
 	public String payBill(@Valid Payment payment, BindingResult bindingResult, HttpSession sessionReservation) {
 		if (bindingResult.hasErrors())
 			return "payment/add-payment";
-		Reservation reservationObject= (Reservation) sessionReservation.getAttribute("reservationObject");
-		paymentService.addPayment(payment, reservationObject );
+		Reservation reservationObject = (Reservation) sessionReservation.getAttribute("reservationObject");
+		double amount = (double) sessionReservation.getAttribute("totalPriceSession");
+		paymentService.addPayment(payment, reservationObject);
 		return "redirect:view-all-payment";
 	}
 

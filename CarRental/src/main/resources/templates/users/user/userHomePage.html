@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+<title>User Home Page</title>
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+
+<link
+	href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.1/css/bootstrap.min.css"
+	th:href="@{/webjars/bootstrap/3.3.1/css/bootstrap.min.css}"
+	rel="stylesheet" media="screen" />
+</head>
+<body>
+		 <h1>  Welcome</h1>   
+		 <table border="4px">
+		<!--  <tr>
+		 	<td th:text="${#httpSession.getAttribute('person')}"> hi</td>
+		 </tr> -->
+		 	<tr>
+		 		<td data-th-text="${#httpSession.getAttribute('person').PersonId}"></td>
+				<td data-th-text="${#httpSession.getAttribute('person').name}"></td>
+				<td data-th-text="${#httpSession.getAttribute('person').identificationNumber}"></td>
+				<td data-th-text="${#httpSession.getAttribute('person').phoneNumber}"></td>
+				<td data-th-text="${#httpSession.getAttribute('person').email}"></td>
+				 
+				<td data-th-text="${#httpSession.getAttribute('person').address}"></td>
+				<td data-th-text="${#httpSession.getAttribute('person').account.username}"></td>
+				<td data-th-text="${#httpSession.getAttribute('person').account.accountType}"></td>
+		 	</tr>
+		 </table>
+		 <ul>
+		 	<li>
+		 	<form th:action="@{/logout}" method="post"	id="logoutForm">
+				<input style="margin-top: 7px" class="btn btn-primary btn-block" type="submit" value="Logout" />
+			</form>
+		</li>
+		 </ul>
+</body>
+</html>

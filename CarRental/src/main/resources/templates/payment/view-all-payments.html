@@ -2,6 +2,8 @@
 <head>
 <meta charset="ISO-8859-1" />
 <title>Reading List</title>
+<link th:href="@{/css/bootstrap.css}" rel="stylesheet" media="screen" />
+<link th:href="@{/css/main.css}" rel="stylesheet" media="screen" />
 <style>
 table {
 	border-collapse: collapse;
@@ -27,10 +29,15 @@ h3 {
 	color: white;
 }
 </style>
+
 </head>
 
 
 <body>
+	<div class="row">
+		<div th:include="../fragments/nav-bar :: header"></div>
+	</div>
+
 	<h3>Search payment on the basic customer name</h3>
 	<form action="#" th:action="@{../payment/search-payment}" method="post">
 		Input customer name <input type="text" name="customerName" /> <input

@@ -1,30 +1,74 @@
 package com.car.rent.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;    
 
 @Entity
 public class Person {
 	@Id
 	@GeneratedValue
-	private Integer personId;
+	private Integer PersonId;
+	 @Size(min=6, max=25)
+	@NotEmpty(message="Please enter Your name")
 	private String name;
+	 @Column(unique=true)
+	 @Size(min=5, max=8)
+	@NotEmpty(message="Please enter Your identificationNumber")
 	private String identificationNumber;
+	@Size(min=10, max=15)
+	@NotEmpty(message="Please enter Your phoneNumber")
+	private String phoneNumber;
+	 //@Size(min=2, max=15)
+	@NotEmpty(message="Please enter Your phoneNumber")
+	@Email(message="Ivvalid email address")
+	private String email;
+	@Valid
 	@Embedded
 	private Address address;
+	@Valid
 	@OneToOne
 	//@JoinColumn(name = "account_person_id", referencedColumnName = "accountId")
+	@JoinColumn(name = "account_person_id")
 	private Account account;
+	
+	@Override
+	public String toString() {
+		return "Person [PersonId=" + PersonId + ", name=" + name + ", identificationNumber=" + identificationNumber
+				+ ", phoneNumber=" + phoneNumber + ", email=" + email + ", address=" + address + ", account=" + account
+				+ "]";
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}  
 	public Integer getPersonId() {
-		return personId;
+		return PersonId;
 	}
 
 	public void setPersonId(Integer personId) {
-		this.personId = personId;
+		PersonId = personId;
 	}
 
 	public String getName() {

@@ -2,28 +2,37 @@ package com.car.rent.domain;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotNull;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Reservation {
 	@Id
 	@GeneratedValue
-	private Integer reservationId;
+	private int reservationId;
+	@Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
 	private Date reservationDateTime;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date pickUpDateTime;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date returnDateTime;
 	@OneToOne
 	private Vehicle vehicle;
 	@OneToOne
 	private Person person;
-	public Integer getReservationId() {
+
+	public int getReservationId() {
 		return reservationId;
 	}
-	public void setReservationId(Integer reservationId) {
+
+	public void setReservationId(int reservationId) {
 		this.reservationId = reservationId;
 	}
 

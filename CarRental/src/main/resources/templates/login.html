@@ -1,0 +1,39 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+ 
+<title>Car Rental | Welcome</title>
+</head>
+<body>
+	<div class="container">
+ 
+	</div>
+	
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-4 col-sm-offset-4 well">
+				<form th:action="@{/login}" method="post" class="form-signin">
+					<div th:if="${param.error}" class="text-center text-danger">Invalid
+						username and password.</div>
+					<div th:if="${param.logout}" class="text-center text-info">You
+						have been logged out.</div>
+					<h2 class="form-signin-heading">Please Log In</h2>
+					<label for="inputUser" class="sr-only">Username</label> <input
+						id="inputUser" type="text" name="username" placeholder="Username"
+						class="form-control" /> <br /> <label for="inputPassword"
+						class="sr-only">Password</label> <input id="inputPassword"
+						type="password" name="password" placeholder="Password"
+						class="form-control" /> <br /> <input type="submit"
+						value="Log In" class="btn btn-lg btn-primary btn-block" /> <br />
+						<a href="#" th:href="@{/login/addUser}">Sign Up for Free!</a>
+				</form>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>
