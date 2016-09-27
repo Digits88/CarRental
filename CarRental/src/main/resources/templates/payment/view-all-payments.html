@@ -2,20 +2,42 @@
 <head>
 <meta charset="ISO-8859-1" />
 <title>Reading List</title>
+<style>
+table {
+	border-collapse: collapse;
+	width: 80%;
+}
+
+th, td, h1 {
+	text-align: left;
+	padding: 8px;
+}
+
+tr:nth-child(even) {
+	background-color: #f2f2f2
+}
+
+th {
+	background-color: #4CAF50;
+	color: white;
+}
+
+h3 {
+	background-color: #4CAF50;
+	color: white;
+}
+</style>
 </head>
 
+
 <body>
-	<h1>Search payment on the basic customer name</h1>
+	<h3>Search payment on the basic customer name</h3>
 	<form action="#" th:action="@{../payment/search-payment}" method="post">
-		<table>
-			<tr>
-				<td>Input customer name</td>
-				<td><input type="text" name="customerName" /></td>
-				<td><input type="submit" name="Search" /></td>
-			</tr>
-		</table>
+		Input customer name <input type="text" name="customerName" /> <input
+			type="submit" name="Search" value="Search" />
+
 	</form>
-	<h1>All payment Information</h1>
+	<h3>All payment Information</h3>
 	<table>
 		<thead>
 			<th>Transaction Date-Time</th>
@@ -23,7 +45,7 @@
 			<th>Amount</th>
 			<th>Reservation ID</th>
 			<th>Customer name</th>
-			<th>Vehicle Plant No</th>
+			<th>Vehicle plat No.</th>
 			<th>Brand</th>
 			<th>Type</th>
 			<th>Model</th>

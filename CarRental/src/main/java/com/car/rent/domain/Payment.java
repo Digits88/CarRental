@@ -20,7 +20,7 @@ public class Payment {
 	private Date paymentDateTime;
 
 	private String paymentType;
-	private Boolean isConfirm;
+	private String isConfirm;
 
 	private double amount;
 	@NotBlank
@@ -60,11 +60,13 @@ public class Payment {
 		this.paymentType = paymentType;
 	}
 
-	public Boolean getIsConfirm() {
+	
+
+	public String getIsConfirm() {
 		return isConfirm;
 	}
 
-	public void setIsConfirm(Boolean isConfirm) {
+	public void setIsConfirm(String isConfirm) {
 		this.isConfirm = isConfirm;
 	}
 

@@ -3,7 +3,8 @@
 <meta charset="ISO-8859-1" />
 <title>Update Payment</title>
 </head>
-
+<style>
+</style>
 <body>
 	<h1>Update your reservation bill</h1>
 
@@ -13,14 +14,15 @@
 			<tr>
 			<tr>
 				<td>Reservation ID</td>
-				<td th:text="${session.paymentObject.reservation.reservationId}"  />
+				<td th:text="${session.paymentObject.reservation.reservationId}" />
 			</tr>
-				<td>Customer name</td>
-				<td th:text="${session.paymentObject.reservation.person.name}"  />
+			<td>Customer name</td>
+			<td th:text="${session.paymentObject.reservation.person.name}" />
 			</tr>
 			<tr>
 				<td>Vehicle Plat No</td>
-				<td th:text="${session.paymentObject.reservation.vehicle.vehiclePlateNumber}"  />
+				<td
+					th:text="${session.paymentObject.reservation.vehicle.vehiclePlateNumber}" />
 			</tr>
 			<tr>
 				<td>Amount</td>

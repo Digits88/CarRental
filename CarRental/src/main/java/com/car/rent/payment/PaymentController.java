@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.car.rent.domain.Payment;
+import com.car.rent.domain.Reservation;
 
 @Controller
 @RequestMapping("/payment")
@@ -29,11 +30,11 @@ public class PaymentController {
 	}
 
 	@RequestMapping(value = "/pay-bill", method = RequestMethod.POST)
-	public String payBill(@Valid Payment payment, BindingResult bindingResult) {
-		System.out.println("arun "+bindingResult);
+	public String payBill(@Valid Payment payment, BindingResult bindingResult, HttpSession sessionReservation) {
 		if (bindingResult.hasErrors())
 			return "payment/add-payment";
-		paymentService.addPayment(payment);
+		Reservation reservationObject= (Reservation) sessionReservation.getAttribute("reservationObject");
+		paymentService.addPayment(payment, reservationObject );
 		return "redirect:view-all-payment";
 	}
 

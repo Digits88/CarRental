@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.car.rent.domain.Payment;
+import com.car.rent.domain.Reservation;
 
 @Service
 public class PaymentServiceImp implements PaymentService {
@@ -15,9 +16,10 @@ public class PaymentServiceImp implements PaymentService {
 	PaymentDAO paymentDao;
 
 	@Override
-	public void addPayment(Payment payment) {
+	public void addPayment(Payment payment, Reservation obj) {
 		payment.setPaymentDateTime(new Date());
-		payment.setReservation(null);
+		payment.setReservation(obj);
+		payment.setIsConfirm("PAID");
 		paymentDao.save(payment);
 	}
 

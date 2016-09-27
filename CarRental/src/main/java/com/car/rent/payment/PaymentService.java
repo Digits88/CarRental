@@ -3,9 +3,10 @@ package com.car.rent.payment;
 import java.util.List;
 
 import com.car.rent.domain.Payment;
+import com.car.rent.domain.Reservation;
 
 public interface PaymentService {
-	public void addPayment(Payment payment);
+	public void addPayment(Payment payment, Reservation obj);
 
 	public List<Payment> findPaymentByID(String paymentId);
 
