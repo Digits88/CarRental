@@ -3,19 +3,28 @@ package com.car.rent.domain;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 public class Vehicle {
 	@Id
 	@GeneratedValue
-	private Integer vehicleId;
+	private Integer vehicleId;	
+	@NotEmpty
 	private String brand;
+	@NotEmpty	
 	private String type;
+	@NotEmpty	
+	private String vehiclePlateNumber;		
 	private int model;
-	private String vehiclePlateNumber;
+	@Min(1)
 	private int numberOfSeats;
+	@Min(0)	
 	private double dailyPrice;
-	private Boolean isAvailable;
+	private boolean isAvailable;
 
 	public Integer getVehicleId() {
 		return vehicleId;
@@ -73,12 +82,19 @@ public class Vehicle {
 		this.dailyPrice = dailyPrice;
 	}
 
-	public Boolean getIsAvailable() {
+	public boolean getIsAvailable() {
 		return isAvailable;
 	}
 
-	public void setIsAvailable(Boolean isAvailable) {
+	public void setIsAvailable(boolean isAvailable) {
 		this.isAvailable = isAvailable;
+	}
+
+	@Override
+	public String toString() {
+		return "Vehicle [vehicleId=" + vehicleId + ", brand=" + brand + ", type=" + type + ", vehiclePlateNumber="
+				+ vehiclePlateNumber + ", model=" + model + ", numberOfSeats=" + numberOfSeats + ", dailyPrice="
+				+ dailyPrice + ", isAvailable=" + isAvailable + "]";
 	}
 
 }

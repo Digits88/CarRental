@@ -103,4 +103,12 @@ public class Person {
 		this.account = account;
 	}
 
+	public Boolean isAdmin(){
+		if(this.account.getAccountType().equals(AccountType.ADMIN)){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
 }

@@ -20,12 +20,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.car.rent.dao.VehicleDAO;
 import com.car.rent.domain.Person;
 import com.car.rent.domain.Reservation;
 import com.car.rent.domain.Vehicle;
 import com.car.rent.reservation.service.PersonService;
 import com.car.rent.reservation.service.ReservationService;
+import com.car.rent.vehicle.dao.VehicleDAO;
 
 //vhicle controller
 @RequestMapping("/reservation/")
@@ -60,8 +60,8 @@ public class ReservationController {
 		// Person person = (Person) session.getAttribute("person");
 		System.out.println("arun"+ addPayment);
 		Vehicle vehicle = vehicleService.findByVehicleId(carNumber);
-		Person person = personService.findById(1);
-		//Person person = (Person) session.getAttribute("person");
+		//Person person = personService.findById(1);
+		Person person = (Person) session.getAttribute("person");
 		reservation.setPerson(person);
 		reservation.setVehicle(vehicle);
 		reservationService.save(reservation);

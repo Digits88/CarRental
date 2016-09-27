@@ -48,7 +48,6 @@ public class LoginController {
 	public String handleLogin(Model model) {
 		
 		if (userHasAuthority("ADMIN")) {
-			System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 			//model.addAttribute("user", true);
 			logger.info("admin logged into system");
 			return "users/admin/HomePage";
@@ -115,6 +114,12 @@ public class LoginController {
 			return "redirect:" + "/";
 		
 
+	}
+	@RequestMapping(value = "admin", method = RequestMethod.GET)
+	public String adminHome(Model model) {
+
+		 
+		return "/users/admin/HomePage";
 	}
 
 	public boolean userHasAuthority(String authority) {
