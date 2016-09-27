@@ -11,21 +11,20 @@ import javax.persistence.OneToOne;
 public class Person {
 	@Id
 	@GeneratedValue
-	private Integer PersonId;
+	private Integer personId;
 	private String name;
 	private String identificationNumber;
 	@Embedded
 	private Address address;
 	@OneToOne
-	@JoinColumn(name = "account_person_id", referencedColumnName = "accountId")
+	//@JoinColumn(name = "account_person_id", referencedColumnName = "accountId")
 	private Account account;
-
 	public Integer getPersonId() {
-		return PersonId;
+		return personId;
 	}
 
 	public void setPersonId(Integer personId) {
-		PersonId = personId;
+		this.personId = personId;
 	}
 
 	public String getName() {

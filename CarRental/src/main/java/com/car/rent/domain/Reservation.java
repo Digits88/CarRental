@@ -20,11 +20,9 @@ public class Reservation {
 	private Vehicle vehicle;
 	@OneToOne
 	private Person person;
-
 	public Integer getReservationId() {
 		return reservationId;
 	}
-
 	public void setReservationId(Integer reservationId) {
 		this.reservationId = reservationId;
 	}

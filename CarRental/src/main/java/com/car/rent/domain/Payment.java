@@ -1,20 +1,40 @@
 package com.car.rent.domain;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 public class Payment {
 	@Id
 	@GeneratedValue
 	private int paymentId;
+	private Date paymentDateTime;
+
+	private String paymentType;
+	private Boolean isConfirm;
+
+	private double amount;
+	@NotBlank
+	@Pattern(regexp = "\\d{3}", message = "Invalid  CVV number")
+	private String cvvNumber;
+	@NotBlank
+	@Pattern(regexp = "\\d{4}[-]\\d{4}[-]\\d{4}[-]\\d{4}", message = "Invalid  card number")
+	private String cardNumber;
+	@NotBlank
+	@Pattern(regexp = "\\d{2}[/]\\d{4}", message = "Invalid  card expiry day")
+	private String expiryDate;
+
 	@OneToOne
-	private Person person;
-	@OneToOne
-	private Vehicle vehicle;
-	private PaymentType paymentType;
+	private Reservation reservation;
 
 	public int getPaymentId() {
 		return paymentId;
@@ -24,28 +44,68 @@ public class Payment {
 		this.paymentId = paymentId;
 	}
 
-	public Person getPerson() {
-		return person;
+	public Date getPaymentDateTime() {
+		return paymentDateTime;
 	}
 
-	public void setPerson(Person person) {
-		this.person = person;
+	public void setPaymentDateTime(Date paymentDateTime) {
+		this.paymentDateTime = paymentDateTime;
 	}
 
-	public Vehicle getVehicle() {
-		return vehicle;
-	}
-
-	public void setVehicle(Vehicle vehicle) {
-		this.vehicle = vehicle;
-	}
-
-	public PaymentType getPaymentType() {
+	public String getPaymentType() {
 		return paymentType;
 	}
 
-	public void setPaymentType(PaymentType paymentType) {
+	public void setPaymentType(String paymentType) {
 		this.paymentType = paymentType;
+	}
+
+	public Boolean getIsConfirm() {
+		return isConfirm;
+	}
+
+	public void setIsConfirm(Boolean isConfirm) {
+		this.isConfirm = isConfirm;
+	}
+
+	public double getAmount() {
+		return amount;
+	}
+
+	public void setAmount(double amount) {
+		this.amount = amount;
+	}
+
+	public String getCvvNumber() {
+		return cvvNumber;
+	}
+
+	public void setCvvNumber(String cvvNumber) {
+		this.cvvNumber = cvvNumber;
+	}
+
+	public String getCardNumber() {
+		return cardNumber;
+	}
+
+	public void setCardNumber(String cardNumber) {
+		this.cardNumber = cardNumber;
+	}
+
+	public String getExpiryDate() {
+		return expiryDate;
+	}
+
+	public void setExpiryDate(String expiryDate) {
+		this.expiryDate = expiryDate;
+	}
+
+	public Reservation getReservation() {
+		return reservation;
+	}
+
+	public void setReservation(Reservation reservation) {
+		this.reservation = reservation;
 	}
 
 }
