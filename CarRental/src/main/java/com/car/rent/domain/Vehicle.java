@@ -18,16 +18,13 @@ public class Vehicle {
 	@NotEmpty	
 	private String type;
 	@NotEmpty	
-	private String vehiclePlateNumber;	
-	@NotNull
+	private String vehiclePlateNumber;		
 	private int model;
-	@NotNull
 	@Min(1)
 	private int numberOfSeats;
-	@NotNull	
 	@Min(0)	
 	private double dailyPrice;
-	private Boolean isAvailable;
+	private boolean isAvailable;
 
 	public Integer getVehicleId() {
 		return vehicleId;
@@ -85,11 +82,11 @@ public class Vehicle {
 		this.dailyPrice = dailyPrice;
 	}
 
-	public Boolean getIsAvailable() {
+	public boolean getIsAvailable() {
 		return isAvailable;
 	}
 
-	public void setIsAvailable(Boolean isAvailable) {
+	public void setIsAvailable(boolean isAvailable) {
 		this.isAvailable = isAvailable;
 	}
 

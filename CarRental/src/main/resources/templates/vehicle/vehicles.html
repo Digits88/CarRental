@@ -10,12 +10,17 @@
 <body>
 	<div class="container">
 		<div class="col-md-12 col-sm-6 col-xs-12">
+
+
 			<div class="row">
+				<div class="row">
+					<div th:include="fragments/nav-bar :: header"></div>
+				</div>
 				<div class="panel panel-primary">
 					<div class="panel-heading">Vehicles List</div>
 
-					<div class="panel-body">					
-						
+					<div class="panel-body">
+
 						<table class="table table-striped">
 							<thead class="thead-inverse">
 								<tr>
@@ -40,9 +45,10 @@
 									<td data-th-text="${vehicle.vehiclePlateNumber}"></td>
 									<td data-th-text="${vehicle.numberOfSeats}"></td>
 									<td data-th-text="${vehicle.dailyPrice}"></td>
-									<td><span
-										class="glyphicon glyphicon-trash form-control row-remover"></span></td>
-									<td><button class="btn-link delete-btn" type="button">delete</button></td>
+									<td><a href="#"
+										data-th-href="@{'/vehicle/detail/'+${vehicle.vehicleId}}">Detail</a></td>
+									<td><a href="#"
+										data-th-href="@{'/vehicle/update/'+${vehicle.vehicleId}}">Edit</a></td>
 								</tr>
 							</tbody>
 						</table>

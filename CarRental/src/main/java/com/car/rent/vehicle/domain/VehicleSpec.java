@@ -5,10 +5,13 @@ public class VehicleSpec {
 	private String type;
 	private String vehiclePlateNumber;
 	private Integer numberOfSeats;
-
+	private Integer minSeats;
 	private Boolean isAvailable;
 	private Integer model;
 	private Double dailyPrice;
+	private Double minPrice;
+	private Double maxPrice;
+	private String available;
 
 	public String getQuery() {
 		StringBuffer query = new StringBuffer("SELECT v FROM Vehicle v WHERE ");
@@ -120,6 +123,39 @@ public class VehicleSpec {
 
 	public void setIsAvailable(Boolean isAvailable) {
 		this.isAvailable = isAvailable;
+	}
+
+	
+	public Integer getMinSeats() {
+		return minSeats;
+	}
+
+	public void setMinSeats(Integer minSeats) {
+		this.minSeats = minSeats;
+	}
+
+	public Double getMinPrice() {
+		return minPrice;
+	}
+
+	public void setMinPrice(Double minPrice) {
+		this.minPrice = minPrice;
+	}
+
+	public Double getMaxPrice() {
+		return maxPrice;
+	}
+
+	public void setMaxPrice(Double maxPrice) {
+		this.maxPrice = maxPrice;
+	}
+
+	public String getAvailable() {
+		return available;
+	}
+
+	public void setAvailable(String available) {
+		this.available = available;
 	}
 
 	@Override

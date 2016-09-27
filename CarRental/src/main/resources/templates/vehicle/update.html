@@ -36,7 +36,15 @@
 								</div>
 							</div>
 
-
+							<div style="display: none" class="form-group row">
+								<label class="col-xs-2 col-form-label" for="isAvailable"
+									id="isAvailable-ariaLabel">Is Available for Rent</label>
+								<div class="form-control">
+									<input  class="col-xs-10" id="isAvailable" name="isAvailable"
+										type="number" th:field="${vehicle.isAvailable}"
+										readonly="readonly" />
+								</div>
+							</div>
 							<div class="form-group row">
 								<label class="col-xs-2 col-form-label" for="CarBrand"
 									id="CarBrand-ariaLabel"> Car Brand :</label>
@@ -93,7 +101,8 @@
 								<div class="form-control">
 									<input class="col-xs-10" id="NumberOfSeats"
 										name="numberOfSeats" min="1" step="1" value="2" type="number"
-										th:field="${vehicle.numberOfSeats}" /> <span class='alert-danger'
+										th:field="${vehicle.numberOfSeats}" /> <span
+										class='alert-danger'
 										th:if="${#fields.hasErrors('vehicle.numberOfSeats')}"
 										th:errors="${vehicle.numberOfSeats}">Name Error</span>
 								</div>
@@ -110,20 +119,28 @@
 										th:errors="${vehicle.dailyPrice}">Name Error</span>
 								</div>
 							</div>
-							<div class="form-group row">
+
+							<!-- 							<div class="form-group row">
 								<div class="col-xs-10">
-									<select required="required" th:field="${available}"
-										class="selectpicker">
-										<option
-											th:attr="selected=${vehicle.isAvailable}? 'selected' : null"
-											value="YES">Available For Rent</option>
+								<label class="col-xs-2 col-form-label" for="available"
+									id="DailyPrice-ariaLabel">Is Available:</label>
+								
+									<input required="required" class="col-xs-10" id="available" th:field="${available}"
+										min="0" step="1" max='1'
+										value="${available}"
+										 type="number"/>								
+ 									<select required="required"
+										th:field="${available}" class="selectpicker">
+										<option th:attr="selected=${vehicle.isAvailable}? 1 : 0"
+											value="1" >Available For Rent</option>
 										<option
 											th:attr="selected=!${vehicle.isAvailable}? 'selected' : null"
-											value="NO">Not Available For Rent</option>
+											value="0">Not Available For Rent</option>
 									</select>
-								</div>
+ 
+ 								</div>
 							</div>
-
+ -->
 
 							<div class="form-group row">
 								<input class="btn-primary" type="submit" value="Update Car" />

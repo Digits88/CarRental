@@ -14,7 +14,6 @@ public class MainController {
 		return "index";
 	}
 	
-	// Error page
 	  @RequestMapping("/error.html")
 	  public String error(HttpServletRequest request, Model model) {
 	    model.addAttribute("errorCode", request.getAttribute("javax.servlet.error.status_code"));
