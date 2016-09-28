@@ -69,6 +69,8 @@ h3 {
 				<td><span th:text="${list.reservation.vehicle.brand}" /></td>
 				<td><span th:text="${list.reservation.vehicle.type}" /></td>
 				<td><span th:text="${list.reservation.vehicle.model}" /></td>
+				<!-- <td th:if="${isAdmin}"><a href="#"
+					data-th-href="@{cancel-payment/{id}(id=${list.paymentId})}">Delete</a></td> -->
 				<td><a th:href="@{cancel-payment/{id}(id=${list.paymentId})}">Delete</a>
 				</td>
 				<td><a th:href="@{update-payment/{id}(id=${list.paymentId})}">Update</a></td>

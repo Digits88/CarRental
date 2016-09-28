@@ -14,7 +14,7 @@
 
 			<div class="row">
 				<div class="row">
-					<div th:include="fragments/nav-bar :: header"></div>
+					<div th:include="../fragments/nav-bar :: header"></div>
 				</div>
 				<div class="panel panel-primary">
 					<div class="panel-heading">Vehicles List</div>
@@ -33,7 +33,7 @@
 									<th>Daily Price</th>
 									<td>Detail</td>
 									<!-- check role before desplaying -->
-									<th th:if="${#httpSession.getAttribute('person').account.accountType}">Delete</th>
+									<th th:if="${isAdmin}">Delete</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -48,10 +48,10 @@
 									<td data-th-text="${vehicle.dailyPrice}"></td>
 									<td><a href="#"
 										data-th-href="@{'/vehicle/detail/'+${vehicle.vehicleId}}">Detail</a></td>
-									<td th:if="${true}"><a href="#"
+									<td th:if="${isAdmin}"><a href="#"
 										data-th-href="@{'/vehicle/update/'+${vehicle.vehicleId}}">Edit</a></td>
 									<td><a href="#"
-										data-th-href="@{'/vehicle/reserve/'+${vehicle.vehicleId}}">Reserve</a></td>																			
+										data-th-href="@{'/reservation/add/'+${vehicle.vehicleId}}">Reserve</a></td>
 								</tr>
 							</tbody>
 						</table>

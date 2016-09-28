@@ -56,20 +56,20 @@ public class ReservationController {
 
 	@PostMapping("add/{carid}")
 	public String add(@PathVariable("carid") int carNumber, @ModelAttribute Reservation reservation, Model model,
-			BindingResult bindingResult, HttpSession session, @Param("addPayment") String addPayment) {
+			BindingResult bindingResult, HttpSession sessionRev, @Param("addPayment") String addPayment) {
 		// Person person = (Person) session.getAttribute("person");
-		System.out.println("arun"+ addPayment);
 		Vehicle vehicle = vehicleService.findByVehicleId(carNumber);
 		//Person person = personService.findById(1);
-		Person person = (Person) session.getAttribute("person");
+		Person person = (Person) sessionRev.getAttribute("person");
 		reservation.setPerson(person);
 		reservation.setVehicle(vehicle);
 		reservationService.save(reservation);
-		session.setAttribute("reservationObject", reservation);
+		sessionRev.setAttribute("reservationObject", reservation);
 		double totalDay = reservation.getReturnDateTime().getDay() - reservation.getPickUpDateTime().getDay();
 		double dayPrice = vehicle.getDailyPrice();
 		double totalPrice = totalDay * dayPrice;
-		session.setAttribute("totalPriceSession", totalPrice);
+		System.out.println("mum"+totalPrice);
+		sessionRev.setAttribute("totalPriceSession", totalPrice);
 		if(addPayment.equals("Yes")){
 			return "redirect:/payment/add-payment";
 		}

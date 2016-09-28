@@ -21,8 +21,14 @@
 						method="post">
 						<table>
 							<tr>
+								<td>Amount to be Paid</td>
+								<td th:text="${session.totalPriceSession}" />
+							</tr>
+
+							<tr>
 								<td>Amount:</td>
-								<td><input type="text" th:field="*{amount}" /></td>
+								<td><input type="text" th:field="*{amount}"
+									th:value="${session.totalPriceSession}" /></td>
 							</tr>
 							<tr>
 								<td>Selection Card Type</td>

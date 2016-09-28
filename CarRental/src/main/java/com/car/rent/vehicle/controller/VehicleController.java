@@ -1,8 +1,8 @@
 package com.car.rent.vehicle.controller;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.car.rent.domain.Person;
 import com.car.rent.domain.Vehicle;
 import com.car.rent.vehicle.domain.VehicleSpec;
 import com.car.rent.vehicle.service.VehicleService;
@@ -27,7 +28,6 @@ public class VehicleController {
 
 	@GetMapping("test")
 	public String testVehiclesPage(Model model) {
-
 		model.addAttribute("vs", new VehicleSpec());
 		model.addAttribute("vehicles", new ArrayList<>());
 		return URL + "search";
@@ -41,8 +41,13 @@ public class VehicleController {
 	}
 
 	@PostMapping("search")
-	public String searchVehicles(@ModelAttribute VehicleSpec vs, Model data) {
+	public String searchVehicles(@ModelAttribute VehicleSpec vs, HttpSession mySession, Model data) {
 		System.out.println("Searching...");
+		if (mySession.getAttribute("person") != null) {
+			data.addAttribute("isAdmin", ((Person) mySession.getAttribute("person")).isAdmin());
+		} else {
+			data.addAttribute("isAdmin", false);
+		}
 		Boolean a;
 		if (vs.getAvailable() == null) {
 			a = null;
