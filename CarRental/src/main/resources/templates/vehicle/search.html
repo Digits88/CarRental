@@ -10,68 +10,32 @@
 <body>
 	<div class="container">
 		<div class="col-md-12 col-sm-6 col-xs-12">
+
+
 			<div class="row">
+				<div class="row">
+					<div th:include="fragments/nav-bar :: header"></div>
+				</div>
 				<div class="panel panel-primary">
-					<div class="panel-heading">Found VehiclesList</div>
+					<div class="panel-heading">Vehicles List</div>
+
 					<div class="panel-body">
 
-						<div class="col-md-12 col-sm-6 col-xs-12">
-							<form class="form-horizontal row-border" th:action="@{add}"
-								method="post" id="addCar"></form>
 
-							<!-- 							<form class="form-inline" method="POST"
-								th:action="@{/vehicle/search}">
-								<div class="form-group row">
-									<label class="col-xs-2 col-form-label" for="CarBrand"
-										id="CarBrand-ariaLabel"> Car Brand :</label>
-									<div class="col-xs-10">
-										<input class="form-control" id="CarBrand" name="brand"
-											type="text" th:field="${vehicle.brand}" />
-									</div>
-								</div>
-
- -->
-
-							<input class="col-xs-10" id="NumberOfSeats" name="minSeats"
-								min="1" step="1" 									placeholder="Minimum Seats" th:field="${vs.minSeats}" />
-								 type="number"
-								th:field="${vehicle.numberOfSeats}" 
-									placeholder="Minimum Seats" th:field="${vs.minSeats}" />								
-								/>
-								
-							<div class="form-group">
-								<label class="sr-only" for="minSeats">Minimum Seats</label> <input
-									type="number" class="form-control" id="minSeats"
-									placeholder="Minimum Seats" th:field="${vs.minSeats}" />
-							</div>
-
-							<div class="form-group">
-								<label class="sr-only" for="minPrice">Minimum Daily
-									Price</label> <input type="number" class="form-control" id="minPrice"
-									placeholder="Minimum Daily Price" th:field="${vs.minPrice}" />
-							</div>
-
-							<div class="form-group">
-								<label class="sr-only" for="maxPrice">Maximum Daily
-									Price</label> <input type="number" class="form-control" id="maxPrice"
-									placeholder="Maximum Daily Price" th:field="${vs.maxPrice}" />
-							</div>
-
-							<div class="form-check">
-								<div class="col-xs-10">
-									<select required="required" th:field="${vs.available}"
-										class="selectpicker">
-										<option selected="selected" value="ALL">All</option>
-										<option value="YES">Available For Rent</option>
-										<option value="NO">Not Available For Rent</option>
-									</select>
-								</div>
-							</div>
-
-							<button type="submit" class="btn btn-primary">Search</button>
+						<div class="row">
+							<form th:action="@{/vehicle/search}" th:object="${vs}" > 
+							
+								<input id="minSeats" type="number"
+									th:field="${vs.minSeats}" placeholder="Smallest Seat Numbers" />
+								<input id="minPrice" min="0.0" type="number"
+									th:field="${vs.minPrice}" placeholder="Minmum Price" />
+								 <input
+									id="maxPrice" type="number" th:field="${vs.maxPrice}"
+									placeholder="Maximum Price" /> <input type="submit"
+									value="Search" />
 							</form>
-
 						</div>
+
 						<table class="table table-striped">
 							<thead class="thead-inverse">
 								<tr>
@@ -83,25 +47,34 @@
 									<th># of Seats</th>
 									<th>Daily Price</th>
 									<td>Detail</td>
-									<th>Delete</th>
+									<!-- check role before desplaying -->
+									<th th:if="${isAdmin}">Delete</th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr data-th-each="v : ${vehicles}" data-vID="${v.vehicleId}">
-									<td data-th-text="${v.vehicleId}"></td>
-									<td data-th-text="${v.brand}"></td>
-									<td data-th-text="${v.type}"></td>
-									<td data-th-text="${v.model}"></td>
-									<td data-th-text="${v.vehiclePlateNumber}"></td>
-									<td data-th-text="${v.numberOfSeats}"></td>
-									<td data-th-text="${v.dailyPrice}"></td>
+								<tr data-th-each="vehicle : ${vehicles}"
+									data-vID="${vehicle.vehicleId}">
+									<td data-th-text="${vehicle.vehicleId}"></td>
+									<td data-th-text="${vehicle.brand}"></td>
+									<td data-th-text="${vehicle.type}"></td>
+									<td data-th-text="${vehicle.model}"></td>
+									<td data-th-text="${vehicle.vehiclePlateNumber}"></td>
+									<td data-th-text="${vehicle.numberOfSeats}"></td>
+									<td data-th-text="${vehicle.dailyPrice}"></td>
 									<td><a href="#"
-										data-th-href="@{'/vehicle/detail/'+${v.vehicleId}}">Detail</a></td>
+										data-th-href="@{'/vehicle/detail/'+${vehicle.vehicleId}}">Detail</a></td>
+									<td th:if="${isAdmin}"><a href="#"
+										data-th-href="@{'/vehicle/update/'+${vehicle.vehicleId}}">Edit</a></td>
 									<td><a href="#"
-										data-th-href="@{'/vehicle/update/'+${v.vehicleId}}">Edit</a></td>
+										data-th-href="@{'/vehicle/reserve/'+${vehicle.vehicleId}}">Reserve</a></td>
 								</tr>
 							</tbody>
 						</table>
+					</div>
+
+					<div th:if="${isAdmin}">
+						<a href="/vehicle/add" class="btn btn-primary btn">Add New Car
+						</a>
 					</div>
 				</div>
 			</div>

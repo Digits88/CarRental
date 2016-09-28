@@ -60,4 +60,7 @@ public class Person {
 		this.account = account;
 	}
 
+	public boolean isAdmin() {
+		return true;
+	}
 }

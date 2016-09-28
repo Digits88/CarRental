@@ -21,6 +21,19 @@
 
 					<div class="panel-body">
 
+						<div class="row">
+							<form th:action="@{/vehicle/vehicles}" th:object="${vs}">
+								<input id="minSeats" type="number" th:field="${vs.minSeats}"
+									placeholder="Smallest Seat Numbers" /> <input id="minPrice"
+									min="0.0" type="number" th:field="${vs.minPrice}"
+									placeholder="Minmum Price" /> <input id="maxPrice"
+									type="number" th:field="${vs.maxPrice}"
+									placeholder="Maximum Price" /> <input type="submit"
+									value="Search" />
+							</form>
+						</div>
+
+
 						<table class="table table-striped">
 							<thead class="thead-inverse">
 								<tr>
@@ -33,7 +46,7 @@
 									<th>Daily Price</th>
 									<td>Detail</td>
 									<!-- check role before desplaying -->
-									<th th:if="${true}">Delete</th>
+									<th th:if="${isAdmin}">Delete</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -48,13 +61,18 @@
 									<td data-th-text="${vehicle.dailyPrice}"></td>
 									<td><a href="#"
 										data-th-href="@{'/vehicle/detail/'+${vehicle.vehicleId}}">Detail</a></td>
-									<td th:if="${true}"><a href="#"
+									<td th:if="${isAdmin}"><a href="#"
 										data-th-href="@{'/vehicle/update/'+${vehicle.vehicleId}}">Edit</a></td>
 									<td><a href="#"
-										data-th-href="@{'/vehicle/reserve/'+${vehicle.vehicleId}}">Reserve</a></td>																			
+										data-th-href="@{'/vehicle/reserve/'+${vehicle.vehicleId}}">Reserve</a></td>
 								</tr>
 							</tbody>
 						</table>
+					</div>
+
+					<div th:if="${isAdmin}">
+						<a href="/vehicle/add" class="btn btn-primary btn">Add New Car
+						</a>
 					</div>
 				</div>
 			</div>
