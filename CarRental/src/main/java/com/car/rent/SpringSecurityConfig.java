@@ -42,10 +42,10 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 		.authoritiesByUsernameQuery(
 				"select username as username, account_type as role from account where username=?");
 	}
-	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/","/login/**","/user/**").permitAll()
+		http.authorizeRequests().antMatchers("/css/**", "/js/**").permitAll()
+		.antMatchers("/","/login/**","/user/**").permitAll()
 		.antMatchers("/admin/**").hasRole("ADMIN").antMatchers("/admin/**")
 				.hasAnyRole("CUSTOMER, ADMIN").antMatchers("/user")
 				.permitAll().antMatchers("/login/addUser").permitAll()
@@ -56,6 +56,6 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	public void configure(WebSecurity web) throws Exception {
-		web.ignoring().antMatchers("//**");
+		web.ignoring().antMatchers("/resource/**");
 	}
 }

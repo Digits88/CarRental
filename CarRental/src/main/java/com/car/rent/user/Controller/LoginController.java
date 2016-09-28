@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.car.rent.domain.Account;
+import com.car.rent.domain.AccountType;
 import com.car.rent.domain.Address;
 import com.car.rent.domain.Person;
 import com.car.rent.user.Service.AccountService;
@@ -104,6 +105,7 @@ public class LoginController {
 			person.setAddress(address);
 			String password = accountService.MD5(account.getPassword());
 			account.setPassword(password);
+			account.setAccountType(AccountType.CUSTOMER);
 			accountService.addAccount(account);
 			person.setAccount(account);
 			personService.addPerson(person);

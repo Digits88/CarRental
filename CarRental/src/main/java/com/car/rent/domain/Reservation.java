@@ -76,4 +76,14 @@ public class Reservation {
 		this.person = person;
 	}
 
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		String str = "";
+		str += "{Id:" + this.getReservationId() + ",ReservationDateTime:" + this.getReservationDateTime()
+				+ ",PickupDateTime:" + this.getPickUpDateTime() + ",ReturnDateTime:" + this.getReturnDateTime()
+				+ ",Person:" + this.getPerson() + ",Vehicle" + this.getVehicle() + "}";
+		return str;
+	}
+
 }

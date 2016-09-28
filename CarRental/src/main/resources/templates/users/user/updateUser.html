@@ -117,6 +117,14 @@
 										th:errors="*{account.password}">Password Error Message</td>
 								</tr>
 								<tr>
+									<th>Role</th>
+									<td><input type="accountType" placeholder="Role"
+										name="accountType" th:field="*{account.accountType}"
+										th-value="${account.accountType}" /></td>
+									<td th:if="${#fields.hasErrors('account.accountType')}"
+										th:errors="*{account.accountType}">Password Error Message</td>
+								</tr>
+								<tr>
 									<th>Account Id</th>
 									<td><input type="text" name="accountId"
 										th:field="*{account.accountId}"

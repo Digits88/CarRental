@@ -18,7 +18,7 @@
 		<div th:include="../fragments/nav-bar :: header"></div>
 	</div>
 	
-	<h1>Welcome</h1>
+	<h1>Welcome <span data-th-text="${#httpSession.getAttribute('person').name}"></span></h1>
 	<table border="4px">
 		<!--  <tr>
 		 	<td th:text="${#httpSession.getAttribute('person')}"> hi</td>
@@ -42,13 +42,13 @@
 			<a href="../vehicle/vehicles"> Check vehicles </a>
 		</tr>
 	</table>
-	<ul>
+	<!-- <ul>
 		<li>
 			<form th:action="@{/logout}" method="post" id="logoutForm">
 				<input style="margin-top: 7px" class="btn btn-primary btn-block"
 					type="submit" value="Logout" />
 			</form>
 		</li>
-	</ul>
+	</ul> -->
 </body>
 </html>

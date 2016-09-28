@@ -88,7 +88,14 @@ public class UserController {
 			return "/users/user/updateUser";
 		} else {
 			account.setActive(true);
-			account.setAccountType(AccountType.CUSTOMER);
+			if(account.getAccountType().equals(AccountType.ADMIN)){
+				account.setAccountType(AccountType.ADMIN);
+			}
+			else{
+				account.setAccountType(AccountType.CUSTOMER);
+			}
+			String password = accountService.MD5(account.getPassword());
+			account.setPassword(password);
 			accountService.updateAccount(account);
 
 			System.out.println(person.toString());
@@ -112,14 +119,21 @@ public class UserController {
 	 * "redirect:/users"; }
 	 */
 
-	@RequestMapping(value = "delete/{PersonId}", method = RequestMethod.GET)
+	/*@RequestMapping(value = "delete/{PersonId}", method = RequestMethod.GET)
 	public @ResponseBody String delete(@PathVariable Integer PersonId, Model data) {
 		Integer AccountId = personService.find(PersonId).getAccount().getAccountId();
 		personService.deletePerson(PersonId);
 		accountService.deleteAccount(AccountId);
-		return "redirect:/user/users";
+		return "redirect:"+"/user/users";
 		// System.out.println("deleted");
 		// return "redirect:/users";
+	}*/
+	@RequestMapping(value = "delete/{PersonId}", method = RequestMethod.GET)
+	public  String delete(@PathVariable Integer PersonId, Model data) {
+		Integer AccountId = personService.find(PersonId).getAccount().getAccountId();
+		personService.deletePerson(PersonId);
+		accountService.deleteAccount(AccountId);
+		return "redirect:"+"/user/users"; 
 	}
 
 	@RequestMapping(value = "userHomePage", method = RequestMethod.GET)

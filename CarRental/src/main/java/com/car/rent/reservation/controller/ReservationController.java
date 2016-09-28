@@ -64,6 +64,8 @@ public class ReservationController {
 		reservation.setPerson(person);
 		reservation.setVehicle(vehicle);
 		reservationService.save(reservation);
+		vehicle.setIsAvailable(false);
+		vehicleService.save(vehicle);
 		sessionRev.setAttribute("reservationObject", reservation);
 		double totalDay = reservation.getReturnDateTime().getDay() - reservation.getPickUpDateTime().getDay();
 		double dayPrice = vehicle.getDailyPrice();
@@ -97,6 +99,10 @@ public class ReservationController {
 
 	@GetMapping("delete/{resid}")
 	public String delete(@PathVariable("resid") int resId) {
+		Reservation reservation = reservationService.findById(resId);
+		Vehicle vehicle =  reservation.getVehicle();
+		vehicle.setIsAvailable(true);
+		vehicleService.save(vehicle);
 		reservationService.delete(resId);
 
 		return "redirect:/reservation/list";

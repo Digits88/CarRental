@@ -23,7 +23,7 @@ public class AccountService {
 	}
 	
 	public void addAccount(Account account){
-		account.setAccountType(AccountType.ADMIN);
+//		account.setAccountType(AccountType.CUSTOMER);
 		//account.setAccountType(AccountType.ADMIN);
 		account.setActive(true);
 		accountDAO.save(account);
