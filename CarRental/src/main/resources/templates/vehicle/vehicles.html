@@ -56,6 +56,10 @@
 							</tbody>
 						</table>
 					</div>
+
+					<div th:if="${isAdmin}">
+						<a href="/vehicle/add" class="btn btn-primary btn">Add New Car </a>
+					</div>
 				</div>
 			</div>
 		</div>

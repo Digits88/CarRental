@@ -50,7 +50,7 @@ public class LoginController {
 		if (userHasAuthority("ADMIN")) {
 			//model.addAttribute("user", true);
 			logger.info("admin logged into system");
-			return "users/admin/HomePage";
+			return "redirect:" + "user/adminHomePage";
 		} else if (userHasAuthority("CUSTOMER")) {
 
 			// model.addAttribute("user", true);

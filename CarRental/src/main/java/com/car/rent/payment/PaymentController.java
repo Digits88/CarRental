@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.car.rent.domain.Payment;
+import com.car.rent.domain.Person;
 import com.car.rent.domain.Reservation;
 
 @Controller
@@ -42,16 +43,32 @@ public class PaymentController {
 	}
 
 	@RequestMapping(value = "/view-payment/{paymentid}", method = RequestMethod.GET)
-	public String viewPayment(@PathVariable("paymentid") String paymentid, Model model) {
-
+	public String viewPayment(@PathVariable("paymentid") String paymentid, Model model, HttpSession mySession) {
+		Person p=(Person) mySession.getAttribute("person");
+		
+		if (mySession.getAttribute("person") != null) {
+			model.addAttribute("isAdmin", ((Person) mySession.getAttribute("person")).isAdmin());
+		} else {
+			model.addAttribute("isAdmin", false);
+		}
+		
 		List<Payment> paymentList = paymentService.findPaymentByID(paymentid);
 		model.addAttribute("paymentList", paymentList);
 		return "payment/view-payment";
 	}
 
 	@RequestMapping(value = "/view-all-payment", method = RequestMethod.GET)
-	public String viewAllPayment(Model model) {
+	public String viewAllPayment(Model model, HttpSession viewSession) {
 		List<Payment> paymentLst = paymentService.findAllPayment();
+		Person p=(Person) viewSession.getAttribute("person");	
+		System.out.println("prakaash"+ p.getName());
+		System.out.println("prakaash"+ p.getAccount().getAccountType());
+		if (viewSession.getAttribute("person") != null) {
+			model.addAttribute("isAdmin", ((Person) viewSession.getAttribute("person")).isAdmin());
+		} else {
+			model.addAttribute("isAdmin", false);
+		}
+		System.out.println("prakash "+ p);
 		model.addAttribute("paymentList", paymentLst);
 		model.addAttribute("totalAmount", paymentService.findTotalAmount(paymentLst));
 		return "payment/view-all-payments";

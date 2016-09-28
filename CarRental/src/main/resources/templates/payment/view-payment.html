@@ -57,10 +57,19 @@ h3 {
 				<td th:text="${list.reservation.vehicle.brand}" />
 				<td th:text="${list.reservation.vehicle.type}" />
 				<td th:text="${list.reservation.vehicle.model}" />
-				<td><a
-					th:href="@{~/payment/cancel-payment/{id}(id=${list.paymentId})}">Delete</a></td>
-				<td><a
-					th:href="@{~/payment/update-payment/{id}(id=${list.paymentId})}">Update</a></td>
+
+				<td th:if="${isAdmin}"><a href="#"
+					data-th-href="@{~/payment/cancel-payment/{id}(id=${list.paymentId})}">Delete</a></td>
+
+
+				<!-- <td><a	th:href="@{~/payment/cancel-payment/{id}(id=${list.paymentId})}">Delete</a></td> -->
+				<!-- <td><a	th:href="@{~/payment/update-payment/{id}(id=${list.paymentId})}">Update</a></td> -->
+
+				<td th:if="${isAdmin}"><a href="#"
+					data-th-href="@{~/payment/update-payment/{id}(id=${list.paymentId})}">Update</a></td>
+
+
+
 				<td><a th:href="@{~/payment/view-all-payment}">View all
 						Payments</a></td>
 			</tr>
