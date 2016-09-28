@@ -23,15 +23,15 @@ import com.car.rent.domain.Vehicle;
 import com.car.rent.vehicle.domain.VehicleSpec;
 import com.car.rent.vehicle.service.VehicleService;
 
-//@RequestMapping("/vehicle/")
-//@Controller
-public class VehicleController {
+@RequestMapping("vehicle/")
+@Controller
+public class Test {
 
 	final private String URL = "/vehicle/";
-//	private boolean testing = true;
+	private boolean testing = true;
 
 	@RequestMapping(value = "vehicles", method = { RequestMethod.GET, RequestMethod.POST })
-	public String vehicles(@ModelAttribute("vs") VehicleSpec vs, BindingResult result, HttpSession session,
+	public String vehicles(@ModelAttribute("vs") VehicleSpec vs, BindingResult result, HttpServletRequest session,
 			Model model) {
 		setRole(session, model);
 		List<Vehicle> found = this.vehicleService.search(vs.getMinSeats(), vs.getMinPrice(), vs.getMaxPrice(), null);
@@ -48,7 +48,7 @@ public class VehicleController {
 
 	// @Secured("ROLE_ADMIN")
 	@PostMapping("delete")
-	public @ResponseBody String delete(int vehicleId, HttpSession session) {
+	public @ResponseBody String delete(int vehicleId, HttpServletRequest session) {
 		authenticate(session);
 		vehicleService.deleteVehicle(vehicleId);
 		return "redirect:" + URL + "vehicles";
@@ -56,7 +56,7 @@ public class VehicleController {
 
 	// @Secured("ROLE_ADMIN")
 	@GetMapping("update/{vehicleId}")
-	public String update(@PathVariable int vehicleId, HttpSession session, Model model) {
+	public String update(@PathVariable int vehicleId, HttpServletRequest session, Model model) {
 		// authenticate(session);
 		Vehicle vehicle = this.vehicleService.find(vehicleId);
 		model.addAttribute("updated", false);
@@ -66,7 +66,7 @@ public class VehicleController {
 
 	// @Secured("ROLE_ADMIN")
 	@PostMapping("update")
-	public String update(@Valid Vehicle vehicle, BindingResult result, HttpSession session, Model model) {
+	public String update(@Valid Vehicle vehicle, BindingResult result, HttpServletRequest session, Model model) {
 
 		authenticate(session);
 
@@ -82,9 +82,10 @@ public class VehicleController {
 		model.addAttribute("available", vehicle.getIsAvailable() ? "YES" : "NO");
 		return URL + "update";
 	}
+
 	// @Secured("ROLE_ADMIN")
 	@GetMapping("add")
-	public String add(HttpSession session, Model model) {
+	public String add(HttpServletRequest session, Model model) {
 		authenticate(session);
 
 		Vehicle vehicle = new Vehicle();
@@ -97,7 +98,7 @@ public class VehicleController {
 
 	// @Secured("ROLE_ADMIN")
 	@PostMapping("add")
-	public String add(@Valid Vehicle vehicle, BindingResult result, HttpSession session, Model model) {
+	public String add(@Valid Vehicle vehicle, BindingResult result, HttpServletRequest session, Model model) {
 
 		authenticate(session);
 
@@ -115,28 +116,28 @@ public class VehicleController {
 		this.vehicleService = vehicleService;
 	}
 
-	private void setRole(HttpSession session, Model model) {
-/*		if (testing) {
+	private void setRole(HttpServletRequest session, Model model) {
+		if (testing) {
 			model.addAttribute("isAdmin", true);
 		}
-*/		if (session.getAttribute("person") != null) {
+		if (session.getAttribute("person") != null) {
 			model.addAttribute("isAdmin", ((Person) session.getAttribute("person")).isAdmin());
 		} else {
 			model.addAttribute("isAdmin", false);
 		}
 	}
 
-	private void authenticate(HttpSession session) {
-/*		if (testing) {
+	private void authenticate(HttpServletRequest session) {
+		if (testing) {
 			return;
 		}
-*/		if (session.getAttribute("person") == null || !((Person) session.getAttribute("person")).isAdmin()) {
+		if (session.getAttribute("person") == null || !((Person) session.getAttribute("person")).isAdmin()) {
 			throw new RuntimeException("Not authenticated to do the operation.");
 		}
 	}
 
 	@RequestMapping(value = "search", method = { RequestMethod.POST, RequestMethod.GET })
-	public String searchVehicles(@ModelAttribute("vs") VehicleSpec vs, BindingResult result, HttpSession session,
+	public String searchVehicles(@ModelAttribute("vs") VehicleSpec vs, BindingResult result, HttpServletRequest session,
 			Model model) {
 		setRole(session, model);
 
