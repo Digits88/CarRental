@@ -16,40 +16,59 @@
 					<div class="panel-body">
 
 						<div class="col-md-12 col-sm-6 col-xs-12">
+							<form class="form-horizontal row-border" th:action="@{add}"
+								method="post" id="addCar"></form>
 
-							<form class="form-inline" method="POST"
+							<!-- 							<form class="form-inline" method="POST"
 								th:action="@{/vehicle/search}">
-
-								<div class="form-group">
-									<label class="sr-only" for="minSeats">Minimum Seats</label> <input
-										type="number" class="form-control" id="minSeats"
-										placeholder="Minimum Seats" th:field="${vs.minSeats}" />
-								</div>
-
-								<div class="form-group">
-									<label class="sr-only" for="minPrice">Minimum Daily
-										Price</label> <input type="number" class="form-control" id="minPrice"
-										placeholder="Minimum Daily Price" th:field="${vs.minPrice}" />
-								</div>
-
-								<div class="form-group">
-									<label class="sr-only" for="maxPrice">Maximum Daily
-										Price</label> <input type="number" class="form-control" id="maxPrice"
-										placeholder="Maximum Daily Price" th:field="${vs.maxPrice}" />
-								</div>
-
-								<div class="form-check">
+								<div class="form-group row">
+									<label class="col-xs-2 col-form-label" for="CarBrand"
+										id="CarBrand-ariaLabel"> Car Brand :</label>
 									<div class="col-xs-10">
-										<select required="required" th:field="${vs.available}"
-											class="selectpicker">
-											<option selected="selected" value="ALL">All</option>
-											<option value="YES">Available For Rent</option>
-											<option value="NO">Not Available For Rent</option>
-										</select>
+										<input class="form-control" id="CarBrand" name="brand"
+											type="text" th:field="${vehicle.brand}" />
 									</div>
 								</div>
 
-								<button type="submit" class="btn btn-primary">Search</button>
+ -->
+
+							<input class="col-xs-10" id="NumberOfSeats" name="minSeats"
+								min="1" step="1" 									placeholder="Minimum Seats" th:field="${vs.minSeats}" />
+								 type="number"
+								th:field="${vehicle.numberOfSeats}" 
+									placeholder="Minimum Seats" th:field="${vs.minSeats}" />								
+								/>
+								
+							<div class="form-group">
+								<label class="sr-only" for="minSeats">Minimum Seats</label> <input
+									type="number" class="form-control" id="minSeats"
+									placeholder="Minimum Seats" th:field="${vs.minSeats}" />
+							</div>
+
+							<div class="form-group">
+								<label class="sr-only" for="minPrice">Minimum Daily
+									Price</label> <input type="number" class="form-control" id="minPrice"
+									placeholder="Minimum Daily Price" th:field="${vs.minPrice}" />
+							</div>
+
+							<div class="form-group">
+								<label class="sr-only" for="maxPrice">Maximum Daily
+									Price</label> <input type="number" class="form-control" id="maxPrice"
+									placeholder="Maximum Daily Price" th:field="${vs.maxPrice}" />
+							</div>
+
+							<div class="form-check">
+								<div class="col-xs-10">
+									<select required="required" th:field="${vs.available}"
+										class="selectpicker">
+										<option selected="selected" value="ALL">All</option>
+										<option value="YES">Available For Rent</option>
+										<option value="NO">Not Available For Rent</option>
+									</select>
+								</div>
+							</div>
+
+							<button type="submit" class="btn btn-primary">Search</button>
 							</form>
 
 						</div>

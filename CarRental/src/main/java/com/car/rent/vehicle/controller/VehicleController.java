@@ -28,6 +28,14 @@ import com.car.rent.vehicle.service.VehicleService;
 public class VehicleController {
 	final private String URL = "/vehicle/";
 
+	@GetMapping("test")
+	public String testVehiclesPage(Model model) {
+
+		model.addAttribute("vs", new VehicleSpec());
+		model.addAttribute("vehicles", new ArrayList<>());
+		return URL + "search";
+	}
+
 	@GetMapping("search")
 	public String searchVehiclePage(Model model) {
 		model.addAttribute("vs", new VehicleSpec());
@@ -68,11 +76,10 @@ public class VehicleController {
 		return URL + "detail";
 	}
 
-	@PostMapping("delete/{vehicleId}")
-	public @ResponseBody String delete(@PathVariable int vehicleId,
-			@RequestHeader(value = "referer", required = false) final String referer) {
+	@PostMapping("delete")
+	public @ResponseBody String delete(int vehicleId) {
 		vehicleService.deleteVehicle(vehicleId);
-		return "deleted";
+		return "redirect:" + URL + "vehicles";
 	}
 
 	@GetMapping("update/{vehicleId}")
@@ -91,9 +98,11 @@ public class VehicleController {
 		if (!result.hasErrors()) {
 			vehicleService.update(vehicle);
 			model.addAttribute("updated", true);
+			model.addAttribute("vehicle", vehicle);
+			model.addAttribute("available", vehicle.getIsAvailable() ? "YES" : "NO");
+			return URL + "update";
 		}
-		System.out.println(vehicle);
-		model.addAttribute("updated", true);
+		model.addAttribute("updated", false);
 		model.addAttribute("vehicle", vehicle);
 		model.addAttribute("available", vehicle.getIsAvailable() ? "YES" : "NO");
 		return URL + "update";
@@ -111,7 +120,7 @@ public class VehicleController {
 	}
 
 	@PostMapping("add")
-	public String add(@Valid Vehicle vehicle, @ModelAttribute("available") String available, BindingResult result,
+	public String add(@Valid Vehicle vehicle, BindingResult result, @ModelAttribute("available") String available,
 			Model model) {
 
 		if (available.equalsIgnoreCase("YES")) {
@@ -120,16 +129,17 @@ public class VehicleController {
 			vehicle.setIsAvailable(false);
 		}
 		if (!result.hasErrors()) {
+			vehicle.setIsAvailable(false);
+			model.addAttribute("added", true);
 			System.out.println("Added to db");
 			vehicleService.addVehicle(vehicle);
+			return URL + "add";
+		} else {
+			model.addAttribute("added", false);
+			model.addAttribute("vehicle", vehicle);
+			model.addAttribute("available", "NO");
+			return URL + "add";
 		}
-
-		model.addAttribute("added", true);
-		vehicle = new Vehicle();
-		vehicle.setIsAvailable(false);
-		model.addAttribute("vehicle", vehicle);
-		model.addAttribute("available", "NO");
-		return URL + "add";
 	}
 
 	public void setVehicleService(VehicleService vehicleService) {

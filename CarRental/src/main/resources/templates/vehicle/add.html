@@ -12,9 +12,7 @@
 
 				<div class="panel panel-primary">
 
-					<div class="panel-heading">
-						New Vehicle Registration
-					</div>
+					<div class="panel-heading">New Vehicle Registration</div>
 
 					<div class="panel-body">
 
@@ -33,7 +31,7 @@
 										type="text" th:field="${vehicle.brand}" /> <span
 										class='alert-danger'
 										th:if="${#fields.hasErrors('vehicle.brand')}"
-										th:errors="${vehicle.brand}">Name Error</span>
+										th:errors="${vehicle.brand}"> Name Error </span>
 								</div>
 							</div>
 
@@ -43,7 +41,8 @@
 								<div class="col-xs-10">
 
 									<input class="form-control" id="CarType" name="type"
-										type="text" th:field="${vehicle.type}" /> <span
+										type="text" th:field="${vehicle.type}" />
+										 <span
 										class='alert-danger'
 										th:if="${#fields.hasErrors('vehicle.type')}"
 										th:errors="${vehicle.type}">Name Error</span>
@@ -100,13 +99,14 @@
 							</div>
 							<div class="form-group row">
 								<div class="col-xs-10">
-									<select required="required" th:field="${available}" class="selectpicker">
-										<option selected="selected" value="YES">Available For Rent</option>
+									<select required="required" th:field="${available}"
+										class="selectpicker">
+										<option selected="selected" value="YES">Available For
+											Rent</option>
 										<option value="NO">Not Available For Rent</option>
 									</select>
 								</div>
 							</div>
-
 
 							<div class="form-group row">
 								<input class="btn-primary" type="submit" value="Add Car" />

@@ -31,8 +31,9 @@
 									<th>Vehicle Plate #}</th>
 									<th># of Seats</th>
 									<th>Daily Price</th>
-									<td>Delete</td>
-									<th>Delete</th>
+									<td>Detail</td>
+									<!-- check role before desplaying -->
+									<th th:if="${true}">Delete</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -47,8 +48,10 @@
 									<td data-th-text="${vehicle.dailyPrice}"></td>
 									<td><a href="#"
 										data-th-href="@{'/vehicle/detail/'+${vehicle.vehicleId}}">Detail</a></td>
-									<td><a href="#"
+									<td th:if="${true}"><a href="#"
 										data-th-href="@{'/vehicle/update/'+${vehicle.vehicleId}}">Edit</a></td>
+									<td><a href="#"
+										data-th-href="@{'/vehicle/reserve/'+${reserve.vehicleId}}">Reserve</a></td>																			
 								</tr>
 							</tbody>
 						</table>
